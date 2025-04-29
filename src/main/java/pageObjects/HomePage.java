@@ -3,12 +3,23 @@ package pageObjects;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BasePage{
     public static final String BASE_URL = "https://bonigarcia.dev/selenium-webdriver-java/";
 
+    @FindBy(xpath = "//a[@href = 'web-form.html']")
+    private WebElement webFormButton;
+    @FindBy(xpath = "//a[@href = 'navigation1.html']")
+    private WebElement navigationButton;
+    @FindBy(xpath = "//a[@href = 'dropdown-menu.html']")
+    private WebElement dropdownMenuButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
         openHome();
     }
 
@@ -19,19 +30,19 @@ public class HomePage extends BasePage{
 
     @Step("Open Web form page")
     public WebFormPage openWebFormPage() {
-        driver.findElement(By.xpath("//a[@href = 'web-form.html']")).click();
+        webFormButton.click();
         return new WebFormPage(driver);
     }
 
     @Step("Open Navigation page")
     public NavigationPage openNavigationPage() {
-        driver.findElement(By.xpath("//a[@href = 'navigation1.html']")).click();
+        navigationButton.click();
         return new NavigationPage(driver);
     }
 
     @Step("Open DropDown menu page")
     public DropDownMenuPage openDropDownMenuPage() {
-        driver.findElement(By.xpath("//a[@href = 'dropdown-menu.html']")).click();
+        dropdownMenuButton.click();
         return new DropDownMenuPage(driver);
     }
 

@@ -1,19 +1,26 @@
 package pageObjects;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NavigationPage extends BasePage{
 
     //locators
-    By secondButton = By.xpath("//li[normalize-space(.)='2']");
-    By previousButton = By.xpath("//li[normalize-space(.)='Previous']");
-    By nextButton = By.xpath("//li[normalize-space(.)='Next']");
-    By textSecondPage = By.xpath("//p[@class='lead']");
-    By textThirdPage = By.xpath("//p[@class='lead']");
-    By textPreviousPage = By.xpath("//p[@class='lead']");
+    @FindBy(xpath = "//li[normalize-space(.)='2']")
+    private WebElement secondButton;
+    @FindBy(xpath = "//li[normalize-space(.)='Previous']")
+    private WebElement previousButton;
+    @FindBy(xpath = "//li[normalize-space(.)='Next']")
+    private WebElement nextButton;
+    @FindBy(xpath = "//p[@class='lead']")
+    private WebElement textSecondPage;
+    @FindBy(xpath = "//p[@class='lead']")
+    private WebElement textThirdPage;
+    @FindBy(xpath = "//p[@class='lead']")
+    private WebElement textPreviousPage;
 
     private static final String NAV_FORM_URL = "navigation1.html";
     public String linkSecondPage = "navigation2.html";
@@ -23,36 +30,37 @@ public class NavigationPage extends BasePage{
 
     public NavigationPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Get second button")
     public WebElement getSecondButton() {
-        return driver.findElement(secondButton);
+        return secondButton;
     }
 
     @Step("Get second page text")
     public WebElement getSecondPageText() {
-        return driver.findElement(textSecondPage);
+        return textSecondPage;
     }
 
     @Step("Get third page text")
     public WebElement getThirdPageText() {
-        return driver.findElement(textThirdPage);
+        return textThirdPage;
     }
 
     @Step("Get previous page text")
     public WebElement getPreviousPageText() {
-        return driver.findElement(textPreviousPage);
+        return textPreviousPage;
     }
 
     @Step("Get next button")
     public WebElement getNextButton() {
-        return driver.findElement(nextButton);
+        return nextButton;
     }
 
     @Step("Get previous button")
     public WebElement getPreviousButton() {
-        return driver.findElement(previousButton);
+        return previousButton;
     }
 
     @Step("Get subpage url")

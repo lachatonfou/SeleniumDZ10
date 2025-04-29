@@ -1,24 +1,27 @@
 package pageObjects;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
 
 public class DropDownMenuPage extends BasePage{
 
     private static final String DROP_DOWN_URL = "dropdown-menu.html";
 
     //locators
-    By leftclick = By.id("my-dropdown-1");
-    By rightclick = By.id("my-dropdown-2");
-    By doubleclick = By.id("my-dropdown-3");
-
+    @FindBy(id = "my-dropdown-1")
+    private WebElement leftclick;
+    @FindBy(id = "my-dropdown-2")
+    private WebElement rightclick;
+    @FindBy(id = "my-dropdown-3")
+    private WebElement doubleclick;
 
     public DropDownMenuPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Get subpage Url")
@@ -28,17 +31,17 @@ public class DropDownMenuPage extends BasePage{
 
     @Step("Get left click menu")
     public WebElement getLeftClickMenu() {
-        return driver.findElement(leftclick);
+        return leftclick;
     }
 
     @Step("Get right click menu")
     public WebElement getRightClickMenu() {
-        return driver.findElement(rightclick);
+        return rightclick;
     }
 
     @Step("Get double click menu")
     public WebElement getDoubleClickMenu() {
-        return driver.findElement(doubleclick);
+        return doubleclick;
     }
 
 }

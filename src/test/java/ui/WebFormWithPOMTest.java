@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pageObjects.HomePage;
 import pageObjects.WebFormPage;
@@ -31,8 +30,7 @@ public class WebFormWithPOMTest extends BaseTestWithPOM{
         String webFormUrl = webFormPage.getWebFormUrl();
         assertEquals(BASE_URL + webFormUrl, currentUrl);
 
-        WebElement title = webFormPage.getTitle();
-        assertEquals("Web form", title.getText());
+        assertEquals("Web form", webFormPage.getTitle());
     }
 
     @Test

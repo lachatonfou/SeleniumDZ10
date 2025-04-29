@@ -1,32 +1,49 @@
 package pageObjects;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class WebFormPage extends BasePage{
     private static final String WEB_FORM_URL = "web-form.html";
 
     //locators
-    By textInput = By.id("my-text-id");
-    By textInputLabel = By.xpath("//label[normalize-space(.)='Text input']");
-    By password = By.name("my-password");
-    By passwordLabel = By.xpath("//label[normalize-space(.)='Password']");
-    By textArea = By.name("my-textarea");
-    By textAreaLabel = By.xpath("//label[normalize-space(.)='Textarea']");
-    By disabledInput = By.name("my-disabled");
-    By disabledInputLabel = By.xpath("//label[normalize-space(.)='Disabled input']");
-    By readonlyInput = By.name("my-readonly");
-    By readonlyInputLabel = By.xpath("//label[normalize-space(.)='Readonly input']");
-    By dropdownSelect = By.name("my-select");
-    By checkedCheckbox = By.id("my-check-1");
-    By checkedCheckboxLabel = By.xpath("//label[normalize-space(.)='Checked checkbox']");
-    By defaultCheckbox = By.id("my-check-2");
-    By defaultCheckboxLabel = By.xpath("//label[normalize-space(.)='Default checkbox']");
+    @FindBy(id = "my-text-id")
+    private WebElement textInput;
+    @FindBy(xpath = "//label[normalize-space(.)='Text input']")
+    private WebElement textInputLabel;
+    @FindBy(name = "my-password")
+    private WebElement password;
+    @FindBy(xpath = "//label[normalize-space(.)='Password']")
+    private WebElement passwordLabel;
+    @FindBy(name = "my-textarea")
+    private WebElement textArea;
+    @FindBy(xpath = "//label[normalize-space(.)='Textarea']")
+    private WebElement textAreaLabel;
+    @FindBy(name = "my-disabled")
+    private WebElement disabledInput;
+    @FindBy(xpath = "//label[normalize-space(.)='Disabled input']")
+    private WebElement disabledInputLabel;
+    @FindBy(name = "my-readonly")
+    private WebElement readonlyInput;
+    @FindBy(xpath = "//label[normalize-space(.)='Readonly input']")
+    private WebElement readonlyInputLabel;
+    @FindBy(name = "my-select")
+    private WebElement dropdownSelect;
+    @FindBy(id = "my-check-1")
+    private WebElement checkedCheckbox;
+    @FindBy(xpath = "//label[normalize-space(.)='Checked checkbox']")
+    private WebElement checkedCheckboxLabel;
+    @FindBy(id = "my-check-2")
+    private WebElement defaultCheckbox;
+    @FindBy(xpath = "//label[normalize-space(.)='Default checkbox']")
+    private WebElement defaultCheckboxLabel;
 
     public WebFormPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Get subpage Url")
@@ -36,76 +53,76 @@ public class WebFormPage extends BasePage{
 
     @Step("Get textInput field")
     public WebElement getTextInput() {
-        return driver.findElement(textInput);
+        return textInput;
     }
 
     @Step("Get textInput label")
     public WebElement getTextInputLabel() {
-        return driver.findElement(textInputLabel);
+        return textInputLabel;
     }
 
     @Step("Get password field")
     public WebElement getPassword() {
-        return driver.findElement(password);
+        return password;
     }
 
     @Step("Get password label")
     public WebElement getPasswordLabel() {
-        return driver.findElement(passwordLabel);
+        return passwordLabel;
     }
 
     @Step("Get text area field")
     public WebElement getTextArea() {
-        return driver.findElement(textArea);
+        return textArea;
     }
 
     @Step("Get text area label")
     public WebElement getTextAreaLabel() {
-        return driver.findElement(textAreaLabel);
+        return textAreaLabel;
     }
 
     @Step("Get disabled input field")
     public WebElement getDisabledInput() {
-        return driver.findElement(disabledInput);
+        return disabledInput;
     }
 
     @Step("Get disabled input label")
     public WebElement getDisabledInputLabel() {
-        return driver.findElement(disabledInputLabel);
+        return disabledInputLabel;
     }
 
     @Step("Get readonly input field")
     public WebElement getReadonlyInput() {
-        return driver.findElement(readonlyInput);
+        return readonlyInput;
     }
 
     @Step("Get readonly input label")
     public WebElement getReadonlyInputLabel() {
-        return driver.findElement(readonlyInputLabel);
+        return readonlyInputLabel;
     }
 
     @Step("Get dropdown select field")
     public WebElement getdropdownSelect() {
-        return driver.findElement(dropdownSelect);
+        return dropdownSelect;
     }
 
     @Step("Get checked checkbox field")
     public WebElement getcheckedCheckbox() {
-        return driver.findElement(checkedCheckbox);
+        return checkedCheckbox;
     }
 
     @Step("Get checked checkbox label")
     public WebElement getcheckedCheckboxLabel() {
-        return driver.findElement(checkedCheckboxLabel);
+        return checkedCheckboxLabel;
     }
 
     @Step("Get default checkbox field")
     public WebElement getdefaultCheckbox() {
-        return driver.findElement(defaultCheckbox);
+        return defaultCheckbox;
     }
 
     @Step("Get default checkbox label")
     public WebElement getdefaultCheckboxLabel() {
-        return driver.findElement(defaultCheckboxLabel);
+        return defaultCheckboxLabel;
     }
 }

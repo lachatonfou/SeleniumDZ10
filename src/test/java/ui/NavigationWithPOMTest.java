@@ -29,8 +29,7 @@ public class NavigationWithPOMTest extends BaseTestWithPOM {
         String currentUrl = navigationPage.getCurrentUrl();
         assertEquals(BASE_URL + navFormUrl, currentUrl);
 
-        WebElement title = navigationPage.getTitle();
-        assertEquals("Navigation example", title.getText());
+        assertEquals("Navigation example", navigationPage.getTitle());
     }
 
     @Test
