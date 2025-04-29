@@ -30,7 +30,7 @@ public class NavigationPage extends BasePage{
 
     public NavigationPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        //PageFactory.initElements(driver, this);
     }
 
     @Step("Get second button")
