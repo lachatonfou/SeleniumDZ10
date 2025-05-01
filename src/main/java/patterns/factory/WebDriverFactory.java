@@ -1,4 +1,4 @@
-package patterns;
+package patterns.factory;
 
 import configs.TestPropertiesConfig;
 import org.aeonbits.owner.ConfigFactory;

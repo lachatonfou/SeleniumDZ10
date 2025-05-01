@@ -16,6 +16,8 @@ public class HomePage extends BasePage{
     private WebElement navigationButton;
     @FindBy(xpath = "//a[@href = 'dropdown-menu.html']")
     private WebElement dropdownMenuButton;
+    @FindBy(xpath = "//a[@href = 'dialog-boxes.html']")
+    private WebElement dialogBoxesButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -46,8 +48,15 @@ public class HomePage extends BasePage{
         return new DropDownMenuPage(driver);
     }
 
+    @Step("Open DialogBoxes page")
+    public DialogBoxesPage openDialogBoxesPage() {
+        dialogBoxesButton.click();
+        return new DialogBoxesPage(driver);
+    }
+
     @Step("Get web title")
     public String getWebTitle() {
         return driver.getTitle();
     }
+
 }

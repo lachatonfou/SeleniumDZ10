@@ -3,13 +3,11 @@ package ui;
 import configs.TestPropertiesConfig;
 import io.qameta.allure.Feature;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import static patterns.WebDriverFactory.createWebDriver;
+import static patterns.factory.WebDriverFactory.createWebDriver;
 
 @Feature("POM")
 public class BaseTestWithPOM {
