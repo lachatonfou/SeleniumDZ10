@@ -1,11 +1,13 @@
 package fluentPages;
 
+import components.FooterComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import components.HeaderComponent;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,8 +32,13 @@ public class FluentLoginPage extends FluentBasePage {
     @CacheLookup
     WebElement invalidCredentialsBox;
 
+    HeaderComponent header;
+    FooterComponent footer;
+
     public FluentLoginPage(WebDriver driver) {
         super(driver);
+        header = new HeaderComponent(driver);
+        footer = new FooterComponent(driver);
         PageFactory.initElements(driver, this);
         visit("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
     }
@@ -66,5 +73,13 @@ public class FluentLoginPage extends FluentBasePage {
     public FluentLoginPage checkInvalidCredentialsBoxIsNotPresent() {
         assertThat(isDisplayed(invalidCredentialsBox)).isFalse();
         return this;
+    }
+
+    public HeaderComponent getHeader() {
+        return header;
+    }
+
+    public FooterComponent getFooter() {
+        return footer;
     }
 }

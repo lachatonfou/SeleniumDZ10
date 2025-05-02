@@ -1,5 +1,7 @@
 package fluentPages;
 
+import components.FooterComponent;
+import components.HeaderComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,9 +22,13 @@ public class FluentDialogBoxesPage extends FluentBasePage{
     private WebElement launchPromptText;
 
     private String name;
+    HeaderComponent header;
+    FooterComponent footer;
 
     public FluentDialogBoxesPage(WebDriver driver) {
         super(driver);
+        header = new HeaderComponent(driver);
+        footer = new FooterComponent(driver);
         PageFactory.initElements(driver, this);
         visit("https://bonigarcia.dev/selenium-webdriver-java/dialog-boxes.html");
     }
@@ -74,5 +80,13 @@ public class FluentDialogBoxesPage extends FluentBasePage{
     public FluentDialogBoxesPage enterNull() {
         assertEquals("You typed: null", launchPromptText.getText());
         return this;
+    }
+
+    public HeaderComponent getHeader() {
+        return header;
+    }
+
+    public FooterComponent getFooter() {
+        return footer;
     }
 }
