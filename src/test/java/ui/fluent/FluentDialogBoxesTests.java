@@ -1,7 +1,6 @@
 package ui.fluent;
 
 import fluentPages.FluentDialogBoxesPage;
-import fluentPages.FluentLoginPage;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,14 +16,23 @@ public class FluentDialogBoxesTests extends BaseTest {
     }
 
     @Test
-    void enterSuccess() throws InterruptedException {
+    void enterSuccess() {
         dialogBoxesPage
                 .click()
                 .openAlert()
                 .getAlertText()
-                .name("Ololo")
+                .name("Mariya")
                 .OK()
-                .enterNameSuccess("Mariya");
+                .enterNameSuccess();
     }
 
+    @Test
+    void enterNull() {
+        dialogBoxesPage
+                .click()
+                .openAlert()
+                .getAlertText()
+                .Cancel()
+                .enterNull();
+    }
 }

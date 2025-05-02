@@ -1,8 +1,6 @@
 package fluentPages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -21,9 +19,7 @@ public class FluentDialogBoxesPage extends FluentBasePage{
     @FindBy(id = "prompt-text")
     private WebElement launchPromptText;
 
-    @CacheLookup
-    @FindBy(id = "my-modal")
-    private WebElement launchModalButton;
+    private String name;
 
     public FluentDialogBoxesPage(WebDriver driver) {
         super(driver);
@@ -32,7 +28,7 @@ public class FluentDialogBoxesPage extends FluentBasePage{
     }
 
     @Step("Click launch prompt button")
-    public FluentDialogBoxesPage click() throws InterruptedException {
+    public FluentDialogBoxesPage click(){
         launchPromptButton.click();
         return this;
     }
@@ -46,14 +42,13 @@ public class FluentDialogBoxesPage extends FluentBasePage{
     @Step("Check alert text")
     public FluentDialogBoxesPage getAlertText () {
         assertEquals("Please enter your name", wait.until(ExpectedConditions.alertIsPresent()).getText());
-       return this;
+        return this;
     }
 
     @Step("Enter name")
     public FluentDialogBoxesPage name(String name) {
-        Alert launchPrompt = wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().sendKeys(name);
-        String enteredName = name;
+        this.name = name;
         return this;
     }
 
@@ -63,18 +58,21 @@ public class FluentDialogBoxesPage extends FluentBasePage{
         return this;
     }
 
+    @Step("Click Cancel button")
+    public FluentDialogBoxesPage Cancel() {
+        driver.switchTo().alert().dismiss();
+        return this;
+    }
+
     @Step("Check entered name")
-    public FluentDialogBoxesPage enterNameSuccess(String enteredName) throws InterruptedException {
+    public FluentDialogBoxesPage enterNameSuccess() {
+        assertEquals("You typed: " + name, launchPromptText.getText());
+        return this;
+    }
 
-//
-//        Alert launchPrompt = wait.until(ExpectedConditions.alertIsPresent());
-//        assertEquals("Please enter your name", launchPrompt.getText());
-//        launchPrompt.sendKeys("Mariya");
-//        launchPrompt.accept();
-
-        //String inputName = name;
-        assertEquals("You typed: " + enteredName, launchPromptText.getText());
-        Thread.sleep(3000);
+    @Step("Check null enter")
+    public FluentDialogBoxesPage enterNull() {
+        assertEquals("You typed: null", launchPromptText.getText());
         return this;
     }
 }
